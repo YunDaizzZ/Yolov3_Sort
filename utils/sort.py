@@ -123,7 +123,7 @@ def associate_detections_to_trackers(detections, trackers, iou_threshold=0.3):
     # filter out matched with low iou
     matches = []
     for m in matched_indices:
-        if (iou_matrix[m[0], m[1]] < iou_threshold) and (not int(detections[m[0]][5]) == int(trackers[m[1]][5])):
+        if (iou_matrix[m[0], m[1]] < iou_threshold) or (not int(detections[m[0]][5]) == int(trackers[m[1]][5])):
             unmatched_detections.append(m[0])
             unmatched_trackers.append(m[1])
         else:
